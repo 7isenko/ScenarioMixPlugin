@@ -1,5 +1,7 @@
 package io.github._7isenko.scenariomix;
 
+import io.github._7isenko.scenariomix.scenarios.lowestkiller.LowestKiller;
+import io.github._7isenko.scenariomix.scenarios.pusher.Pusher;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,13 +12,17 @@ public class ScenarioMix extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-
+        loadScenarioManager();
         this.getCommand("mix").setExecutor(new ScenarioMixCommand());
-        getServer().getPluginManager().registerEvents(new SpigotListener(), plugin);
     }
 
     @Override
     public void onDisable() {
+        ScenarioManager.getInstance().disableAll();
+    }
 
+    private void loadScenarioManager() {
+        ScenarioManager.getInstance().addScenario(new Pusher());
+        ScenarioManager.getInstance().addScenario(new LowestKiller());
     }
 }

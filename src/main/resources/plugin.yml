@@ -7,3 +7,4 @@ commands:
   mix:
     description: Открывает меню сценариев
     usage: /mix
+    permission: op
