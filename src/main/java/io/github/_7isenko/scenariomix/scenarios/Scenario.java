@@ -1,7 +1,6 @@
 package io.github._7isenko.scenariomix.scenarios;
 
 import io.github._7isenko.scenariomix.ScenarioMix;
-import io.github._7isenko.scenariomix.gui.ScenarioMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.HandlerList;
@@ -50,28 +49,38 @@ public abstract class Scenario {
 
     public abstract void stop();
 
-    private void addRunnable(BukkitRunnable runnable, int period) {
+    public void addRunnable(BukkitRunnable runnable, int period) {
         runnables.put(runnable, period);
     }
 
-    private void addListener(Listener listener) {
+    public void addListener(Listener listener) {
         listeners.add(listener);
     }
 
-    private void startListeners(){
+    public void startListeners() {
         listeners.forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, ScenarioMix.plugin));
     }
 
-    private void stopListeners(){
+    public void stopListeners() {
         listeners.forEach(HandlerList::unregisterAll);
     }
 
-    private void startRunnables(){
+    public void startRunnables() {
         runnables.forEach((runnable, period) -> runnable.runTaskTimer(ScenarioMix.plugin, 20, period));
     }
 
-    private void stopRunnables(){
-        runnables.forEach((runnable, integer) -> runnable.cancel());
+    public void stopRunnables() {
+        HashMap<BukkitRunnable, Integer> newRunnables = new HashMap<>();
+        runnables.forEach((runnable, integer) -> {
+            runnable.cancel();
+            try {
+                newRunnables.put(runnable.getClass().newInstance(), integer);
+            } catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        });
+        runnables.clear();
+        runnables = newRunnables;
     }
 
     public String getName() {

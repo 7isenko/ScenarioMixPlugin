@@ -11,7 +11,8 @@ public class Pusher extends Scenario {
 
     @Override
     public void start() {
-
+        addRunnable(new PusherRunnable(), 20);
+        addListener(new AttackListener());
     }
 
     @Override

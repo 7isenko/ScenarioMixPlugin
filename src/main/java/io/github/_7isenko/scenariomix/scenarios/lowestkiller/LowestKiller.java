@@ -12,7 +12,7 @@ public class LowestKiller extends Scenario {
 
     @Override
     public void start() {
-
+        addRunnable(new KillerRunnable(), 1200);
     }
 
     @Override
