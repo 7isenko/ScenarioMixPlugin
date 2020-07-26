@@ -2,6 +2,7 @@ package io.github._7isenko.scenariomix;
 
 import io.github._7isenko.scenariomix.scenarios.lowestkiller.LowestKiller;
 import io.github._7isenko.scenariomix.scenarios.pusher.Pusher;
+import io.github._7isenko.scenariomix.scenarios.snowballs.Snowballs;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,7 +23,9 @@ public class ScenarioMix extends JavaPlugin {
     }
 
     private void loadScenarioManager() {
-        ScenarioManager.getInstance().addScenario(new Pusher());
-        ScenarioManager.getInstance().addScenario(new LowestKiller());
+        ScenarioManager scenarioManager = ScenarioManager.getInstance();
+        scenarioManager.addScenario(new Pusher());
+        scenarioManager.addScenario(new LowestKiller());
+        scenarioManager.addScenario(new Snowballs());
     }
 }
