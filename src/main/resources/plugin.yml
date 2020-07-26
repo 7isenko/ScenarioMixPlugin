@@ -1,0 +1,9 @@
+name: ScenarioMix
+version: "1.0"
+api-version: "1.12"
+author: 7isenko
+main: io.github._7isenko.scenariomix.ScenarioMix
+commands:
+  mix:
+    description: Открывает меню сценариев
+    usage: /mix
