@@ -1,7 +1,9 @@
 package io.github._7isenko.scenariomix.scenarios.snowballs;
 
 import io.github._7isenko.scenariomix.scenarios.Scenario;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 public class Snowballs extends Scenario {
 
@@ -11,7 +13,10 @@ public class Snowballs extends Scenario {
 
     @Override
     public void start() {
-        // TODO: засчитывать фраги, убрать другие источники урона, дать всем 2 блока снега и тыкву
+        Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().addItem(new ItemStack(Material.PUMPKIN, 1), new ItemStack(Material.SNOW_BLOCK, 2)));
+        addListener(new SnowballHitListener());
+        // TODO: засчитывать фраги, убрать другие источники урона
+
     }
 
     @Override
