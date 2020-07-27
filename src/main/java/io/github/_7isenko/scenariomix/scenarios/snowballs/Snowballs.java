@@ -15,8 +15,6 @@ public class Snowballs extends Scenario {
     public void start() {
         Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().addItem(new ItemStack(Material.PUMPKIN, 1), new ItemStack(Material.SNOW_BLOCK, 2)));
         addListener(new SnowballHitListener());
-        // TODO: засчитывать фраги, убрать другие источники урона
-
     }
 
     @Override

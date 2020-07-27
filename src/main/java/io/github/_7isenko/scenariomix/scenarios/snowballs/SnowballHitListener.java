@@ -2,7 +2,6 @@ package io.github._7isenko.scenariomix.scenarios.snowballs;
 
 import org.bukkit.Particle;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
