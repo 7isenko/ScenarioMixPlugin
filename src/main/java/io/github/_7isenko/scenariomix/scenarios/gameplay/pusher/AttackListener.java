@@ -1,4 +1,4 @@
-package io.github._7isenko.scenariomix.scenarios.pusher;
+package io.github._7isenko.scenariomix.scenarios.gameplay.pusher;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

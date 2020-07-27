@@ -1,4 +1,4 @@
-package io.github._7isenko.scenariomix.scenarios.snowballs;
+package io.github._7isenko.scenariomix.scenarios.gameplay.snowballs;
 
 import io.github._7isenko.scenariomix.scenarios.Scenario;
 import org.bukkit.Bukkit;

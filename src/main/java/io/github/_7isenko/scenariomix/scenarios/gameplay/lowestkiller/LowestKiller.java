@@ -1,4 +1,4 @@
-package io.github._7isenko.scenariomix.scenarios.lowestkiller;
+package io.github._7isenko.scenariomix.scenarios.gameplay.lowestkiller;
 
 import io.github._7isenko.scenariomix.ScenarioMix;
 import io.github._7isenko.scenariomix.scenarios.Scenario;

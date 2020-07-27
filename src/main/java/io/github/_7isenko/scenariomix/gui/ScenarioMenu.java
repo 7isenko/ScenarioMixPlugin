@@ -20,57 +20,18 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Map;
 
-public class ScenarioMenu {
+public class ScenarioMenu extends Menu {
     private static ScenarioMenu instance;
-    private Inventory inventory;
-
-    public void open(Player player) {
-        player.openInventory(inventory);
-    }
 
     private ScenarioMenu() {
         String name = "Доступные сценарии";
+        scenarios = ScenarioManager.getInstance().getScenarios();
         inventory = createInventory(name, ScenarioManager.getInstance().getScenarios());
         Bukkit.getPluginManager().registerEvents(new InventoryListener(), ScenarioMix.plugin);
     }
 
-    private Inventory createInventory(String name, Map<Integer, Scenario> scenarioSet) {
-        Inventory inventory = Bukkit.createInventory(null, Calculator.calculateInventorySize(scenarioSet.size()), name);
-        scenarioSet.forEach((number, scenario) -> {
-            ItemStack item = new ItemStack(scenario.getIcon());
-            ItemMeta meta = item.getItemMeta();
-            meta.setDisplayName(ChatColor.YELLOW + scenario.getName());
-            meta.setLore(scenario.getDescription());
-            item.setItemMeta(meta);
-            inventory.setItem(number, item);
-        });
-        return inventory;
-    }
-
-    public class InventoryListener implements Listener {
-        @EventHandler(priority = EventPriority.HIGHEST)
-        public void onClick(InventoryClickEvent event) {
-            if (!event.getInventory().getName().equals(inventory.getName()))
-                return;
-            event.setCancelled(true);
-            final ItemStack clickedItem = event.getCurrentItem();
-            if (clickedItem == null || clickedItem.getType() == Material.AIR) return;
-            int slot = event.getSlot();
-            boolean enabled = ScenarioManager.getInstance().switchScenario(slot);
-            String name = ScenarioManager.getInstance().getScenarios().get(slot).getName();
-            if (enabled)
-                event.getWhoClicked().sendMessage(ChatColor.GREEN + "Вы включили сценарий " + ChatColor.BLUE + ChatColor.BOLD + name);
-            else
-                event.getWhoClicked().sendMessage(ChatColor.YELLOW + "Вы отключили сценарий " + ChatColor.RED + ChatColor.BOLD + name);
-            Enchanter.enchantItem(inventory.getItem(slot), !enabled);
-        }
-
-        @EventHandler
-        public void onInventoryClick(final InventoryDragEvent e) {
-            if (e.getInventory() == inventory) {
-                e.setCancelled(true);
-            }
-        }
+    protected boolean switchScenario(int slot) {
+        return ScenarioManager.getInstance().switchScenario(slot);
     }
 
     public static ScenarioMenu getInstance() {

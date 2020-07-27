@@ -8,9 +8,14 @@ import java.util.Map;
 public class ScenarioManager {
     private static ScenarioManager instance;
     private Map<Integer, Scenario> scenarios;
+    private Map<Integer, Scenario> toolScenarios;
 
     public void addScenario(Scenario scenario) {
         scenarios.put(scenarios.size(), scenario);
+    }
+
+    public void addToolScenario(Scenario scenario) {
+        toolScenarios.put(toolScenarios.size(), scenario);
     }
 
     /**
@@ -26,12 +31,26 @@ public class ScenarioManager {
         }
     }
 
+    public boolean switchToolScenario(int number) {
+        if (toolScenarios.get(number).enable()) {
+            return true;
+        } else {
+            toolScenarios.get(number).disable();
+            return false;
+        }
+    }
+
+    public Map<Integer, Scenario> getToolScenarios() {
+        return toolScenarios;
+    }
+
     public Map<Integer, Scenario> getScenarios() {
         return scenarios;
     }
 
     private ScenarioManager() {
         this.scenarios = new HashMap<>();
+        this.toolScenarios = new HashMap<>();
     }
 
     public static ScenarioManager getInstance() {
