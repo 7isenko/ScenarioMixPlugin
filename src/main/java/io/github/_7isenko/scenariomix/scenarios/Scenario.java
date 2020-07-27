@@ -32,7 +32,7 @@ public abstract class Scenario {
         started = true;
         start();
         startListeners();
-        startRunnables();
+        startBukkitRunnables();
         return true;
     }
 
@@ -41,7 +41,7 @@ public abstract class Scenario {
         started = false;
         stop();
         stopListeners();
-        stopRunnables();
+        stopBukkitRunnables();
         return true;
     }
 
@@ -49,7 +49,7 @@ public abstract class Scenario {
 
     public abstract void stop();
 
-    public void addRunnable(BukkitRunnable runnable, int period) {
+    public void addBukkitRunnable(BukkitRunnable runnable, int period) {
         runnables.put(runnable, period);
     }
 
@@ -65,11 +65,11 @@ public abstract class Scenario {
         listeners.forEach(HandlerList::unregisterAll);
     }
 
-    public void startRunnables() {
+    public void startBukkitRunnables() {
         runnables.forEach((runnable, period) -> runnable.runTaskTimer(ScenarioMix.plugin, 20, period));
     }
 
-    public void stopRunnables() {
+    public void stopBukkitRunnables() {
         HashMap<BukkitRunnable, Integer> newRunnables = new HashMap<>();
         runnables.forEach((runnable, integer) -> {
             runnable.cancel();
