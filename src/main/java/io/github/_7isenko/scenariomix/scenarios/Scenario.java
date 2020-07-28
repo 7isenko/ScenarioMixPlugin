@@ -22,7 +22,6 @@ public abstract class Scenario {
         this.description = description;
         this.icon = icon;
         this.started = false;
-        // TODO: recreate runnable system, cancel and restart cause exception
         runnables = new HashMap<>();
         listeners = new HashSet<>();
     }
