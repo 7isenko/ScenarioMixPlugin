@@ -1,7 +1,6 @@
 package io.github._7isenko.scenariomix;
 
-import io.github._7isenko.scenariomix.gui.Menu;
-import io.github._7isenko.scenariomix.gui.ScenarioMenu;
+import io.github._7isenko.scenariomix.gui.MenuHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,7 +11,7 @@ public class ScenarioMixCommand implements CommandExecutor {
 
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player) {
-            Menu.getInstance().open(((Player) commandSender));
+            MenuHandler.getInstance().getMainMenu().open(((Player) commandSender));
         } else commandSender.sendMessage(ChatColor.RED + "Эта команда доступна только для игроков");
         return true;
     }

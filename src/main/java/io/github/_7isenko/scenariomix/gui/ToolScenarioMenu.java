@@ -1,13 +1,12 @@
 package io.github._7isenko.scenariomix.gui;
 
-import io.github._7isenko.scenariomix.ScenarioManager;
+import io.github._7isenko.scenariomix.scenarios.ScenarioManager;
 import io.github._7isenko.scenariomix.ScenarioMix;
 import org.bukkit.Bukkit;
 
-public class ToolMenu extends Menu {
-    private static ToolMenu instance;
+public class ToolScenarioMenu extends ScenarioMenu {
 
-    private ToolMenu() {
+    public ToolScenarioMenu() {
         String name = "Доступные инструменты";
         scenarios = ScenarioManager.getInstance().getToolScenarios();
         inventory = createInventory(name, ScenarioManager.getInstance().getToolScenarios());
@@ -18,9 +17,4 @@ public class ToolMenu extends Menu {
         return ScenarioManager.getInstance().switchToolScenario(slot);
     }
 
-    public static ToolMenu getInstance() {
-        if (instance == null)
-            instance = new ToolMenu();
-        return instance;
-    }
 }

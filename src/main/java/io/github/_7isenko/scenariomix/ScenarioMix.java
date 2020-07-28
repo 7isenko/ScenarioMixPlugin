@@ -1,5 +1,6 @@
 package io.github._7isenko.scenariomix;
 
+import io.github._7isenko.scenariomix.scenarios.ScenarioManager;
 import io.github._7isenko.scenariomix.scenarios.gameplay.lowestkiller.LowestKiller;
 import io.github._7isenko.scenariomix.scenarios.gameplay.pusher.Pusher;
 import io.github._7isenko.scenariomix.scenarios.gameplay.snowballs.Snowballs;

@@ -1,6 +1,4 @@
-package io.github._7isenko.scenariomix;
-
-import io.github._7isenko.scenariomix.scenarios.Scenario;
+package io.github._7isenko.scenariomix.scenarios;
 
 import java.util.HashMap;
 import java.util.Map;
