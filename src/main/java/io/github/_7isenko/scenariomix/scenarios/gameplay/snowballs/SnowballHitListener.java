@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
-public class SnowballHitListener implements Listener {
+class SnowballHitListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onHit(ProjectileHitEvent event) {
         if (event.getEntity() instanceof Snowball && event.getHitEntity() instanceof LivingEntity) {

@@ -8,7 +8,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class KillerRunnable implements Runnable {
+class KillerRunnable implements Runnable {
     @Override
     public void run() {
         Bukkit.broadcastMessage(ChatColor.GREEN + "3...");

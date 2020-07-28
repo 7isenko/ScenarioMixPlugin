@@ -5,7 +5,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.util.Vector;
 
-public class AttackListener implements Listener {
+class AttackListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onAttack(EntityDamageByEntityEvent event) {
         if (event.getFinalDamage() != 0)
