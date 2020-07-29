@@ -4,6 +4,7 @@ import io.github._7isenko.scenariomix.scenarios.ScenarioManager;
 import io.github._7isenko.scenariomix.scenarios.gameplay.lowestkiller.LowestKiller;
 import io.github._7isenko.scenariomix.scenarios.gameplay.pusher.Pusher;
 import io.github._7isenko.scenariomix.scenarios.gameplay.snowballs.Snowballs;
+import io.github._7isenko.scenariomix.scenarios.gameplay.snowfall.Snowfall;
 import io.github._7isenko.scenariomix.scenarios.tools.autorespawn.AutoRespawn;
 import io.github._7isenko.scenariomix.scenarios.tools.autospectator.AutoSpectator;
 import org.bukkit.plugin.Plugin;
@@ -32,5 +33,6 @@ public class ScenarioMix extends JavaPlugin {
         scenarioManager.addScenario(new Pusher());
         scenarioManager.addScenario(new LowestKiller());
         scenarioManager.addScenario(new Snowballs());
+        scenarioManager.addScenario(new Snowfall());
     }
 }
