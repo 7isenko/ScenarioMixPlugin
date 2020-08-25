@@ -10,7 +10,7 @@ public class LastSight extends Scenario {
     }
 
     public void start() {
-        this.addBukkitRunnable(new KillingRunnable(), 4);
+        addBukkitRunnable(new KillingRunnable(), 2);
     }
 
     public void stop() {
