@@ -6,7 +6,7 @@ import org.bukkit.Material;
 public class AutoSpectator extends Scenario {
 
     public AutoSpectator() {
-        super("Авто-гм 3", new String[]{"Когда игрок возраждается, он","автоматически получает гм 3"}, Material.FEATHER);
+        super("Авто-гм 3", "auto_spectator", new String[]{"Когда игрок возраждается, он","автоматически получает гм 3"}, Material.FEATHER);
     }
 
     @Override

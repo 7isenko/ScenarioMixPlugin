@@ -11,90 +11,118 @@ import java.util.*;
 
 public abstract class Scenario {
     private String name;
+    private String configName;
     private String[] description;
     private Material icon;
     private boolean started;
     private Map<BukkitRunnable, Integer> runnables;
     private Set<Listener> listeners;
+    private Map<String, Configuration> configs;
 
-    public Scenario(String name, String[] description, Material icon) {
+    public Scenario(String name, String configName, String[] description, Material icon) {
         this.name = name;
+        this.configName = configName;
         this.description = description;
         this.icon = icon;
         this.started = false;
-        runnables = new HashMap<>();
-        listeners = new HashSet<>();
+        this.runnables = new HashMap();
+        this.listeners = new HashSet();
+        this.configs = new HashMap();
     }
 
     public boolean enable() {
-        if (started) return false;
-        started = true;
-        start();
-        startListeners();
-        startBukkitRunnables();
-        return true;
+        if (this.started) {
+            return false;
+        } else {
+            this.started = true;
+            this.start();
+            this.startListeners();
+            this.startBukkitRunnables();
+            return true;
+        }
     }
 
     public boolean disable() {
-        if (!started) return false;
-        started = false;
-        stop();
-        stopListeners();
-        stopBukkitRunnables();
-        return true;
+        if (!this.started) {
+            return false;
+        } else {
+            this.started = false;
+            this.stop();
+            this.stopListeners();
+            this.stopBukkitRunnables();
+            return true;
+        }
     }
 
     public abstract void start();
 
     public abstract void stop();
 
+    public void addConfig(Configuration config) {
+        this.configs.put(config.getName(), config);
+    }
+
     public void addBukkitRunnable(BukkitRunnable runnable, int period) {
-        runnables.put(runnable, period);
+        this.runnables.put(runnable, period);
     }
 
     public void addListener(Listener listener) {
-        listeners.add(listener);
+        this.listeners.add(listener);
     }
 
     public void startListeners() {
-        listeners.forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, ScenarioMix.plugin));
+        this.listeners.forEach((listener) -> {
+            Bukkit.getPluginManager().registerEvents(listener, ScenarioMix.plugin);
+        });
     }
 
     public void stopListeners() {
-        listeners.forEach(HandlerList::unregisterAll);
+        this.listeners.forEach(HandlerList::unregisterAll);
     }
 
     public void startBukkitRunnables() {
-        runnables.forEach((runnable, period) -> runnable.runTaskTimer(ScenarioMix.plugin, 20, period));
+        this.runnables.forEach((runnable, period) -> {
+            runnable.runTaskTimer(ScenarioMix.plugin, 20L, (long)period);
+        });
     }
 
     public void stopBukkitRunnables() {
-        HashMap<BukkitRunnable, Integer> newRunnables = new HashMap<>();
-        runnables.forEach((runnable, integer) -> {
+        HashMap<BukkitRunnable, Integer> newRunnables = new HashMap();
+        this.runnables.forEach((runnable, integer) -> {
             runnable.cancel();
+
             try {
                 newRunnables.put(runnable.getClass().newInstance(), integer);
-            } catch (InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
+            } catch (IllegalAccessException | InstantiationException var4) {
+                var4.printStackTrace();
             }
+
         });
-        runnables.clear();
-        runnables = newRunnables;
+        this.runnables.clear();
+        this.runnables = newRunnables;
+    }
+
+    public Configuration getConfig(String name) {
+        return this.configs.get(name);
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public List<String> getDescription() {
-        return Arrays.asList(description);
+        return Arrays.asList(this.description);
     }
 
     public Material getIcon() {
-        return icon;
+        return this.icon;
     }
 
     public boolean isStarted() {
-        return started;
+        return this.started;
+    }
+
+    public String getConfigName() {
+        return this.configName;
     }
 }

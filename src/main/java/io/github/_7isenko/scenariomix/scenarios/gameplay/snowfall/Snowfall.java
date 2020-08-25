@@ -21,7 +21,7 @@ public class Snowfall extends Scenario {
     protected World world;
 
     public Snowfall() {
-        super("Снегопад", new String[]{"Запускает сильный снегопад"}, Material.SNOW_BLOCK);
+        super("Снегопад", "snowfall", new String[]{"Запускает сильный снегопад"}, Material.SNOW_BLOCK);
     }
 
     @Override

@@ -11,7 +11,7 @@ public class LowestKiller extends Scenario {
     BukkitTask task;
 
     public LowestKiller() {
-        super("Низшему не жить", new String[]{"Каждую минуту самый", "нижний игрок умирает"}, Material.BRICK_STAIRS);
+        super("Низшему не жить", "lowest_killer", new String[]{"Каждую минуту самый", "нижний игрок умирает"}, Material.BRICK_STAIRS);
     }
 
     @Override
