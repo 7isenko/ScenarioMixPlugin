@@ -11,7 +11,9 @@ class RespawnListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onRespawn(PlayerRespawnEvent event) {
         if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
-            event.getPlayer().setGameMode(GameMode.SPECTATOR);
+            // It is buggy
+            // event.getPlayer().setGameMode(GameMode.SPECTATOR);
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "gamemode 3 " + event.getPlayer().getName());
         }
     }
 }
