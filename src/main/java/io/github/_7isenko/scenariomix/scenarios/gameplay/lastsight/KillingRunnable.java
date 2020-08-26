@@ -31,7 +31,7 @@ public class KillingRunnable extends BukkitRunnable {
 
         while(var3.hasNext()) {
             Entity entity = (Entity)var3.next();
-            if (entity instanceof LivingEntity && this.isLookingAt(player, (LivingEntity)entity)) {
+            if (entity instanceof LivingEntity && isLookingAt(player, (LivingEntity)entity) && isCloser(player, (LivingEntity)entity)) {
                 entities.add((LivingEntity)entity);
             }
         }
@@ -46,5 +46,11 @@ public class KillingRunnable extends BukkitRunnable {
         Vector toPlayer2 = player.getLocation().toVector().subtract(eyes.toVector());
         dot = Math.max(toPlayer2.normalize().dot(eyes.getDirection()), dot);
         return dot > 0.99D;
+    }
+
+    private boolean isCloser(Player player, LivingEntity livingEntity) {
+        double toBlock = livingEntity.getEyeLocation().distance(livingEntity.getTargetBlock(null, 30).getLocation());
+        double toPlayer = Math.min(player.getLocation().distance(livingEntity.getEyeLocation()), player.getEyeLocation().distance(livingEntity.getEyeLocation()));
+        return toPlayer <= toBlock;
     }
 }
