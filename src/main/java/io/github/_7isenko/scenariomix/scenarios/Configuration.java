@@ -2,17 +2,17 @@ package io.github._7isenko.scenariomix.scenarios;
 
 import org.bukkit.Material;
 
-public class Configuration {
+public class Configuration<T> {
     private String name;
-    private String configName;
     private String[] description;
     private Material icon;
+    private T value;
 
-    public Configuration(String name, String configName, String[] description, Material icon) {
+    public Configuration(String name, String[] description, Material icon, T defaultValue) {
         this.name = name;
-        this.configName = configName;
         this.description = description;
         this.icon = icon;
+        this.value = defaultValue;
     }
 
     public String getName() {
@@ -27,7 +27,15 @@ public class Configuration {
         return this.icon;
     }
 
-    public String getConfigName() {
-        return this.configName;
+    public T value() {
+        return value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
     }
 }

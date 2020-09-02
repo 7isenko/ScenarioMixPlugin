@@ -31,25 +31,25 @@ public abstract class Scenario {
     }
 
     public boolean enable() {
-        if (this.started) {
+        if (started) {
             return false;
         } else {
-            this.started = true;
-            this.start();
-            this.startListeners();
-            this.startBukkitRunnables();
+            started = true;
+            start();
+            startListeners();
+            startBukkitRunnables();
             return true;
         }
     }
 
     public boolean disable() {
-        if (!this.started) {
+        if (!started) {
             return false;
         } else {
-            this.started = false;
-            this.stop();
-            this.stopListeners();
-            this.stopBukkitRunnables();
+            started = false;
+            stop();
+            stopListeners();
+            stopBukkitRunnables();
             return true;
         }
     }
@@ -59,70 +59,70 @@ public abstract class Scenario {
     public abstract void stop();
 
     public void addConfig(Configuration config) {
-        this.configs.put(config.getName(), config);
+        configs.put(config.getName(), config);
     }
 
     public void addBukkitRunnable(BukkitRunnable runnable, int period) {
-        this.runnables.put(runnable, period);
+        runnables.put(runnable, period);
     }
 
     public void addListener(Listener listener) {
-        this.listeners.add(listener);
+        listeners.add(listener);
     }
 
     public void startListeners() {
-        this.listeners.forEach((listener) -> {
+        listeners.forEach((listener) -> {
             Bukkit.getPluginManager().registerEvents(listener, ScenarioMix.plugin);
         });
     }
 
     public void stopListeners() {
-        this.listeners.forEach(HandlerList::unregisterAll);
+        listeners.forEach(HandlerList::unregisterAll);
     }
 
     public void startBukkitRunnables() {
-        this.runnables.forEach((runnable, period) -> {
-            runnable.runTaskTimer(ScenarioMix.plugin, 20L, (long)period);
+        runnables.forEach((runnable, period) -> {
+            runnable.runTaskTimer(ScenarioMix.plugin, 20L, (long) period);
         });
     }
 
     public void stopBukkitRunnables() {
         HashMap<BukkitRunnable, Integer> newRunnables = new HashMap();
-        this.runnables.forEach((runnable, integer) -> {
+        runnables.forEach((runnable, integer) -> {
             runnable.cancel();
 
             try {
                 newRunnables.put(runnable.getClass().newInstance(), integer);
-            } catch (IllegalAccessException | InstantiationException var4) {
-                var4.printStackTrace();
+            } catch (IllegalAccessException | InstantiationException e) {
+                e.printStackTrace();
             }
 
         });
-        this.runnables.clear();
-        this.runnables = newRunnables;
+        runnables.clear();
+        runnables = newRunnables;
     }
 
     public Configuration getConfig(String name) {
-        return this.configs.get(name);
+        return configs.get(name);
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public List<String> getDescription() {
-        return Arrays.asList(this.description);
+        return Arrays.asList(description);
     }
 
     public Material getIcon() {
-        return this.icon;
+        return icon;
     }
 
     public boolean isStarted() {
-        return this.started;
+        return started;
     }
 
     public String getConfigName() {
-        return this.configName;
+        return configName;
     }
 }
