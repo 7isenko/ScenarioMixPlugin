@@ -19,7 +19,7 @@ public abstract class Scenario {
     private Set<Listener> listeners;
     private Map<String, Configuration> configs;
 
-    public Scenario(String name, String configName, String[] description, Material icon) {
+    public Scenario(String name, String configName, Material icon, String[] description) {
         this.name = name;
         this.configName = configName;
         this.description = description;

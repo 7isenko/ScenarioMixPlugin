@@ -8,11 +8,11 @@ public class Configuration<T> {
     private Material icon;
     private T value;
 
-    public Configuration(String name, String[] description, Material icon, T defaultValue) {
+    public Configuration(String name, T defaultValue, Material icon, String[] description) {
         this.name = name;
-        this.description = description;
-        this.icon = icon;
         this.value = defaultValue;
+        this.icon = icon;
+        this.description = description;
     }
 
     public String getName() {

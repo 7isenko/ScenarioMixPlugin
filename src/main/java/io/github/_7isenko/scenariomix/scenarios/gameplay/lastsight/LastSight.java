@@ -6,7 +6,7 @@ import org.bukkit.Material;
 public class LastSight extends Scenario {
 
     public LastSight() {
-        super("Последний взгляд", "last_sight", new String[]{"Взгляд на человека с тегом", "last_sight вас мгновенно убьёт", "/scoreboard players tag <nick> add last_sight"}, Material.GLASS);
+        super("Последний взгляд", "last_sight", Material.GLASS, new String[]{"Взгляд на человека с тегом", "last_sight вас мгновенно убьёт", "/scoreboard players tag <nick> add last_sight"});
     }
 
     public void start() {

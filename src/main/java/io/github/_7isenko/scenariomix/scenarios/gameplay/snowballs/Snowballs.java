@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 public class Snowballs extends Scenario {
 
     public Snowballs() {
-        super("Снежки", "snowballs", new String[]{"Теперь только снежки", "могут наносить урон"}, Material.SNOW_BALL);
+        super("Снежки", "snowballs", Material.SNOW_BALL, new String[]{"Теперь только снежки", "могут наносить урон"});
     }
 
     @Override

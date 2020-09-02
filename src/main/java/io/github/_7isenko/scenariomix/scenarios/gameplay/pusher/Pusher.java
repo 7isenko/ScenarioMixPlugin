@@ -6,7 +6,7 @@ import org.bukkit.Material;
 public class Pusher extends Scenario {
 
     public Pusher() {
-        super("Толкатель", "pusher", new String[]{"Каждую секунду толкает всех", "игроков в случайную сторону"}, Material.PAPER);
+        super("Толкатель", "pusher", Material.PAPER, new String[]{"Каждую секунду толкает всех", "игроков в случайную сторону"});
     }
 
     @Override
