@@ -106,6 +106,10 @@ public abstract class Scenario {
         return configs.get(name);
     }
 
+    public boolean isConfigurable() {
+        return !configs.isEmpty();
+    }
+
     public String getName() {
         return name;
     }

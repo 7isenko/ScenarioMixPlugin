@@ -18,12 +18,12 @@ public class Fill extends Scenario {
         addConfig(replace);
     }
 
-    Configuration<Material> material = new Configuration<>("material", Material.LAVA, Material.BOWL, this, "Чем заполнять");
-    Configuration<Integer> delay = new Configuration<>("delay", 60, Material.FEATHER, this, "Время между заполнениями", "(секунды)");
-    Configuration<Integer> amount = new Configuration<>("amount", 2, Material.COBBLESTONE_STAIRS, this, "Толщина блоков, заполняемых ", "за один раз");
-    Configuration<Integer> current = new Configuration<>("current", 2, Material.SIGN, this, "Текущая высота", "заполнения");
-    Configuration<Boolean> replace = new Configuration<>("replace", false, Material.IRON_SPADE, this, "Заменять блоки", "любого типа");
-    BukkitRunnable task = null;
+    private final Configuration<Material> material = new Configuration<>("material", Material.LAVA, Material.BOWL, this, "Чем заполнять");
+    private final Configuration<Integer> delay = new Configuration<>("delay", 60, Material.FEATHER, this, "Время между заполнениями", "(секунды)");
+    private final Configuration<Integer> amount = new Configuration<>("amount", 2, Material.COBBLESTONE_STAIRS, this, "Толщина блоков, заполняемых ", "за один раз");
+    private final Configuration<Integer> current = new Configuration<>("current", 2, Material.SIGN, this, "Текущая высота", "заполнения");
+    private final Configuration<Boolean> replace = new Configuration<>("replace", false, Material.IRON_SPADE, this, "Заменять блоки", "любого типа");
+    private BukkitRunnable task = null;
 
     @Override
     public void start() {

@@ -69,7 +69,7 @@ public class ScenarioMixCommand implements CommandExecutor {
 
     private boolean checkScenario(Scenario scenario, CommandSender commandSender) {
         if (scenario != null) {
-            if (scenario.getConfigs().isEmpty()) {
+            if (!scenario.isConfigurable()) {
                 commandSender.sendMessage(ChatColor.RED + "У этого сценария нет возможных конфигураций");
                 return false;
             } else
@@ -81,7 +81,8 @@ public class ScenarioMixCommand implements CommandExecutor {
     }
 
     private void sendScenariosNames(CommandSender commandSender) {
-        for (Scenario scenario1 : ScenarioManager.getInstance().getAllScenarios()) {
+        commandSender.sendMessage(ChatColor.BLUE + "Вот список сценариев с фонфигурациями:");
+        for (Scenario scenario1 : ScenarioManager.getInstance().getConfigurableScenarios()) {
             String string = ChatColor.GRAY + scenario1.getConfigName() + " - " + ChatColor.YELLOW + scenario1.getName() + ": " + String.join(" ", scenario1.getDescription());
             commandSender.sendMessage(string);
         }

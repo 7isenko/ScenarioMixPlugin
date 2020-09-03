@@ -1,5 +1,6 @@
 package io.github._7isenko.scenariomix;
 
+import io.github._7isenko.scenariomix.cui.ConfigurationTabCompleter;
 import io.github._7isenko.scenariomix.cui.ScenarioMixCommand;
 import io.github._7isenko.scenariomix.scenarios.ScenarioManager;
 import io.github._7isenko.scenariomix.scenarios.gameplay.fill.Fill;
@@ -24,6 +25,7 @@ public class ScenarioMix extends JavaPlugin {
         plugin = this;
         loadScenarioManager();
         this.getCommand(command).setExecutor(new ScenarioMixCommand());
+        this.getCommand(command).setTabCompleter(new ConfigurationTabCompleter());
     }
 
     @Override
