@@ -1,6 +1,8 @@
 package io.github._7isenko.scenariomix.scenarios;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class ScenarioManager {
@@ -44,6 +46,35 @@ public class ScenarioManager {
 
     public Map<Integer, Scenario> getScenarios() {
         return scenarios;
+    }
+
+    public Scenario getScenario(String name) {
+        for (Scenario scenario : getAllScenarios()) {
+            if (scenario.getConfigName().equalsIgnoreCase(name))
+                return scenario;
+        }
+        return null;
+    }
+
+    public Scenario getToolScenario(int number) {
+        return toolScenarios.get(number);
+    }
+
+    public Scenario getScenario(int number) {
+        return scenarios.get(number);
+    }
+
+    public Collection<Scenario> getAllScenarios() {
+        Collection<Scenario> scenarios = new HashSet<>(this.scenarios.values());
+        scenarios.addAll(this.toolScenarios.values());
+        return scenarios;
+    }
+
+    public Collection<String> getAllScenariosNames() {
+        Collection<Scenario> scenarios = getAllScenarios();
+        Collection<String> names = new HashSet<>();
+        scenarios.forEach(scenario -> names.add(scenario.getConfigName()));
+        return names;
     }
 
     private ScenarioManager() {

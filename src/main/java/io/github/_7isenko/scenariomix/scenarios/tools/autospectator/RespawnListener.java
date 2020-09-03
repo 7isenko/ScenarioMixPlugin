@@ -1,19 +1,25 @@
 package io.github._7isenko.scenariomix.scenarios.tools.autospectator;
 
+import io.github._7isenko.scenariomix.ScenarioMix;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 class RespawnListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onRespawn(PlayerRespawnEvent event) {
-        if (event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+        if (event.getPlayer().getGameMode() == GameMode.SURVIVAL || event.getPlayer().getGameMode() == GameMode.ADVENTURE) {
             // It is buggy
-            // event.getPlayer().setGameMode(GameMode.SPECTATOR);
-            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "gamemode 3 " + event.getPlayer().getName());
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    event.getPlayer().setGameMode(GameMode.SPECTATOR);
+                }
+            }.runTask(ScenarioMix.plugin);
         }
     }
 }

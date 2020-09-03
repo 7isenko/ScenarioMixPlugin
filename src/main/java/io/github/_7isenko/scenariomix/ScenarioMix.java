@@ -1,6 +1,8 @@
 package io.github._7isenko.scenariomix;
 
+import io.github._7isenko.scenariomix.cui.ScenarioMixCommand;
 import io.github._7isenko.scenariomix.scenarios.ScenarioManager;
+import io.github._7isenko.scenariomix.scenarios.gameplay.fill.Fill;
 import io.github._7isenko.scenariomix.scenarios.gameplay.lastsight.LastSight;
 import io.github._7isenko.scenariomix.scenarios.gameplay.lowestkiller.LowestKiller;
 import io.github._7isenko.scenariomix.scenarios.gameplay.pusher.Pusher;
@@ -15,12 +17,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ScenarioMix extends JavaPlugin {
     // How to build: Maven/ScenarioMix/Lifecycle/package
     public static Plugin plugin;
+    public static final String command = "mix";
 
     @Override
     public void onEnable() {
         plugin = this;
         loadScenarioManager();
-        this.getCommand("mix").setExecutor(new ScenarioMixCommand());
+        this.getCommand(command).setExecutor(new ScenarioMixCommand());
     }
 
     @Override
@@ -38,5 +41,6 @@ public class ScenarioMix extends JavaPlugin {
         scenarioManager.addScenario(new Snowballs());
         scenarioManager.addScenario(new Snowfall());
         scenarioManager.addScenario(new LastSight());
+        scenarioManager.addScenario(new Fill());
     }
 }

@@ -6,5 +6,5 @@ main: io.github._7isenko.scenariomix.ScenarioMix
 commands:
   mix:
     description: Открывает меню сценариев
-    usage: /mix
+    usage: /mix или /mix <сценарий> <конфиг> <значение>
     permission: op

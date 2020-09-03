@@ -46,6 +46,12 @@ public class MainMenu extends Menu {
         public void onClick(InventoryClickEvent event) {
             if (!event.getInventory().getName().equals(inventory.getName()))
                 return;
+            if (event.getCurrentItem() == null) {
+                event.getWhoClicked().closeInventory();
+                return;
+            }
+            if (event.getCurrentItem().getType() == Material.AIR)
+                return;
             event.setCancelled(true);
             int slot = event.getSlot();
 

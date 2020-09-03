@@ -10,24 +10,24 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.*;
 
 public abstract class Scenario {
-    private String name;
-    private String configName;
-    private String[] description;
+    private final String name;
+    private final String configName;
+    private final String[] description;
     private Material icon;
     private boolean started;
     private Map<BukkitRunnable, Integer> runnables;
     private Set<Listener> listeners;
     private Map<String, Configuration> configs;
 
-    public Scenario(String name, String configName, Material icon, String[] description) {
+    public Scenario(String name, String configName, Material icon, String... description) {
         this.name = name;
         this.configName = configName;
         this.description = description;
         this.icon = icon;
         this.started = false;
-        this.runnables = new HashMap();
-        this.listeners = new HashSet();
-        this.configs = new HashMap();
+        this.runnables = new HashMap<>();
+        this.listeners = new HashSet<>();
+        this.configs = new HashMap<>();
     }
 
     public boolean enable() {
@@ -114,8 +114,16 @@ public abstract class Scenario {
         return Arrays.asList(description);
     }
 
+    public Set<String> getConfigStrings() {
+        return configs.keySet();
+    }
+
     public Material getIcon() {
         return icon;
+    }
+
+    public void setIcon(Material icon) {
+        this.icon = icon;
     }
 
     public boolean isStarted() {
@@ -124,5 +132,9 @@ public abstract class Scenario {
 
     public String getConfigName() {
         return configName;
+    }
+
+    public Map<String, Configuration> getConfigs() {
+        return configs;
     }
 }
