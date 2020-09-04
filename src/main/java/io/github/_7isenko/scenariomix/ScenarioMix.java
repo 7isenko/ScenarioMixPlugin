@@ -12,6 +12,7 @@ import io.github._7isenko.scenariomix.scenarios.gameplay.snowfall.Snowfall;
 import io.github._7isenko.scenariomix.scenarios.tools.autorespawn.AutoRespawn;
 import io.github._7isenko.scenariomix.scenarios.tools.autospectator.AutoSpectator;
 import io.github._7isenko.scenariomix.scenarios.tools.fightme.FightMe;
+import io.github._7isenko.scenariomix.scenarios.tools.heightlimit.HeightLimit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,6 +39,7 @@ public class ScenarioMix extends JavaPlugin {
         scenarioManager.addToolScenario(new AutoSpectator());
         scenarioManager.addToolScenario(new AutoRespawn());
         scenarioManager.addToolScenario(new FightMe());
+        scenarioManager.addToolScenario(new HeightLimit());
         scenarioManager.addScenario(new Pusher());
         scenarioManager.addScenario(new LowestKiller());
         scenarioManager.addScenario(new Snowballs());
