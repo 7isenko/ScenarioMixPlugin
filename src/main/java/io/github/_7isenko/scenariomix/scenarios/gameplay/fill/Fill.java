@@ -71,7 +71,7 @@ public class Fill extends Scenario {
     }
 
     private void fill(World world, int size) {
-        if (current.value() >= 255)
+        if (current.value() >= 256)
             return;
         Location center = world.getWorldBorder().getCenter();
         for (int y = 0; y < amount.value(); y++) {
