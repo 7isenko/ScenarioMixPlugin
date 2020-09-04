@@ -44,8 +44,8 @@ public class Fill extends Scenario {
                     return;
                 }
                 int borderSize = (int) Math.ceil(world.getWorldBorder().getSize());
-                if (borderSize > 5000) {
-                    Bukkit.broadcast(ChatColor.RED + "Размер границ мира больше 5000, заполнение отменено. Нужен перезапуск", "op");
+                if (borderSize > 1000) {
+                    Bukkit.broadcast(ChatColor.RED + "Размер границ мира больше 1000, заполнение отменено. Нужен перезапуск", "op");
                     task.cancel();
                     task = null;
                     return;
@@ -66,12 +66,8 @@ public class Fill extends Scenario {
 
     }
 
-    private void runIt() {
-
-    }
-
     private void fill(World world, int size) {
-        if (current.value() >= 256)
+        if (current.value() >= 256 || current.value() < 0)
             return;
         Location center = world.getWorldBorder().getCenter();
         for (int y = 0; y < amount.value(); y++) {
@@ -86,7 +82,7 @@ public class Fill extends Scenario {
         }
         if (upside.getValue()) {
             current.setValue(current.getValue() - amount.value());
-        }
-        current.setValue(current.getValue() + amount.value());
+        } else
+            current.setValue(current.getValue() + amount.value());
     }
 }

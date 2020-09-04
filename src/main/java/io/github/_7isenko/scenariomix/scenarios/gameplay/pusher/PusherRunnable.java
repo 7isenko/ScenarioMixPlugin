@@ -7,7 +7,7 @@ import org.bukkit.util.Vector;
 
 import java.util.Random;
 
-class PusherRunnable extends BukkitRunnable {
+public class PusherRunnable extends BukkitRunnable {
     @Override
     public void run() {
         Random r = new Random();
