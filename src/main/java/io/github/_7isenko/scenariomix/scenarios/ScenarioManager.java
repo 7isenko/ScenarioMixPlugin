@@ -1,6 +1,6 @@
 package io.github._7isenko.scenariomix.scenarios;
 
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 

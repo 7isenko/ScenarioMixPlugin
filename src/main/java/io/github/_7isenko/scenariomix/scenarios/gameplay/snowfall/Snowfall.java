@@ -60,7 +60,7 @@ public class Snowfall extends Scenario {
     private void startChunk(final Chunk chunk) {
         final float chunkPercentage = chunks.getOrDefault(chunk, 0.0F);
         loaded.add(chunk);
-        (new BukkitRunnable() {
+        new BukkitRunnable() {
             int counter = 0;
             int tickMiss = 3;
             int amount;
@@ -93,7 +93,7 @@ public class Snowfall extends Scenario {
                     ++counter;
                 }
             }
-        }).runTaskTimer(ScenarioMix.plugin, 0L, 1L);
+        }.runTaskTimer(ScenarioMix.plugin, 0L, 1L);
 
     }
 

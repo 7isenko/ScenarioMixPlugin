@@ -74,7 +74,7 @@ public class Configuration<T> {
         if (value instanceof Integer)
             return ValueType.INTEGER;
         else if (value instanceof Boolean)
-            return ValueType.INTEGER;
+            return ValueType.BOOLEAN;
         else if (value instanceof Material)
             return ValueType.MATERIAL;
         else if (value instanceof String)
