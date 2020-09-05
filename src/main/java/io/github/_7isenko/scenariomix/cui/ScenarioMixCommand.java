@@ -1,20 +1,17 @@
 package io.github._7isenko.scenariomix.cui;
 
-import io.github._7isenko.scenariomix.ScenarioMix;
 import io.github._7isenko.scenariomix.gui.MenuHandler;
-import io.github._7isenko.scenariomix.scenarios.Configuration;
+import io.github._7isenko.scenariomix.scenarios.config.Configuration;
 import io.github._7isenko.scenariomix.scenarios.Scenario;
 import io.github._7isenko.scenariomix.scenarios.ScenarioManager;
 import io.github._7isenko.scenariomix.utils.Parser;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import javax.activation.UnsupportedDataTypeException;
-
+@SuppressWarnings("rawtypes")
 public class ScenarioMixCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
@@ -25,7 +22,7 @@ public class ScenarioMixCommand implements CommandExecutor {
             return true;
         }
 
-        Scenario scenario = ScenarioManager.getInstance().getScenario(strings[0]);
+        Scenario scenario = ScenarioManager.getInstance().getAnyScenario(strings[0]);
 
         if (strings.length == 1) {
             if (checkScenario(scenario, commandSender))

@@ -1,8 +1,6 @@
 package io.github._7isenko.scenariomix.gui;
 
 import io.github._7isenko.scenariomix.scenarios.ScenarioManager;
-import io.github._7isenko.scenariomix.ScenarioMix;
-import org.bukkit.Bukkit;
 
 public class ToolScenarioMenu extends ScenarioMenu {
 

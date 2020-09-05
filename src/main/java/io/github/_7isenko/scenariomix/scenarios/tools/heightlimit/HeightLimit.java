@@ -1,7 +1,6 @@
 package io.github._7isenko.scenariomix.scenarios.tools.heightlimit;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import io.github._7isenko.scenariomix.scenarios.Configuration;
+import io.github._7isenko.scenariomix.scenarios.config.Configuration;
 import io.github._7isenko.scenariomix.scenarios.Scenario;
 import org.bukkit.Material;
 

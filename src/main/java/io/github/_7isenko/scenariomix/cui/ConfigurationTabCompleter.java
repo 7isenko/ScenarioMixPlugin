@@ -8,27 +8,32 @@ import org.bukkit.command.TabCompleter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ConfigurationTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        List<Scenario> scenarios = ScenarioManager.getInstance().getConfigurableScenarios();
         if (args.length == 1) {
-            List<String> filtered = new ArrayList<>();
-            for (Scenario scenario : scenarios) {
-                filtered.add(scenario.getConfigName());
-            }
-            return filtered;
+            return filter(ScenarioManager.getInstance().getAllScenariosNames(), args[0]);
         }
 
         if (args.length == 2) {
-            Scenario scenario = ScenarioManager.getInstance().getScenario(args[0]);
-            if (scenario.isConfigurable()) {
-                return new ArrayList<>(scenario.getConfigStrings());
+            Scenario scenario = ScenarioManager.getInstance().getAnyScenario(args[0]);
+            if (scenario != null && scenario.isConfigurable()) {
+                return filter(new ArrayList<>(scenario.getConfigStrings()), args[1]);
             }
             return null;
         }
 
         return null;
+    }
+
+    public List<String> filter(List<String> strings, String word) {
+        if (word.equals(""))
+            return strings;
+        List<String> filtered = strings.stream().filter(s -> s.startsWith(word)).collect(Collectors.toList());
+        if (filtered.isEmpty())
+            return filter(strings, word.substring(0, word.length() - 1));
+        else return filtered;
     }
 }

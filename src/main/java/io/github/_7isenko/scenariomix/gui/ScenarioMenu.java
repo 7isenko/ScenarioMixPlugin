@@ -63,7 +63,7 @@ public class ScenarioMenu extends Menu {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        new ConfigurationMenu(scenario, menuInstance).open(event.getWhoClicked());
+                        new ConfigurationsMenu(scenario, menuInstance).open(event.getWhoClicked());
                     }
                 }.runTaskLater(ScenarioMix.plugin, 1);
             }

@@ -1,11 +1,13 @@
 package io.github._7isenko.scenariomix.scenarios;
 
+import com.sun.istack.internal.Nullable;
+
 import java.util.*;
 
 public class ScenarioManager {
     private static ScenarioManager instance;
-    private Map<Integer, Scenario> scenarios;
-    private Map<Integer, Scenario> toolScenarios;
+    private final Map<Integer, Scenario> scenarios;
+    private final Map<Integer, Scenario> toolScenarios;
 
     public void addScenario(Scenario scenario) {
         scenarios.put(scenarios.size(), scenario);
@@ -45,7 +47,8 @@ public class ScenarioManager {
         return scenarios;
     }
 
-    public Scenario getScenario(String name) {
+    @Nullable
+    public Scenario getAnyScenario(String name) {
         for (Scenario scenario : getAllScenarios()) {
             if (scenario.getConfigName().equalsIgnoreCase(name))
                 return scenario;
@@ -53,10 +56,12 @@ public class ScenarioManager {
         return null;
     }
 
+    @Nullable
     public Scenario getToolScenario(int number) {
         return toolScenarios.get(number);
     }
 
+    @Nullable
     public Scenario getScenario(int number) {
         return scenarios.get(number);
     }
@@ -75,9 +80,9 @@ public class ScenarioManager {
         return list;
     }
 
-    public Collection<String> getAllScenariosNames() {
+    public List<String> getAllScenariosNames() {
         Collection<Scenario> scenarios = getAllScenarios();
-        Collection<String> names = new HashSet<>();
+        List<String> names = new ArrayList<>();
         scenarios.forEach(scenario -> names.add(scenario.getConfigName()));
         return names;
     }
@@ -94,6 +99,6 @@ public class ScenarioManager {
     }
 
     public void disableAll() {
-        scenarios.forEach((integer, scenario) -> scenario.disable());
+        scenarios.values().forEach(Scenario::disable);
     }
 }

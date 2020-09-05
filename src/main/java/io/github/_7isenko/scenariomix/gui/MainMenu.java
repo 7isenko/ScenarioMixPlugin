@@ -83,9 +83,4 @@ public class MainMenu extends Menu {
         }
     }
 
-    protected boolean switchScenario(int slot) {
-        return false;
-    }
-
-
 }

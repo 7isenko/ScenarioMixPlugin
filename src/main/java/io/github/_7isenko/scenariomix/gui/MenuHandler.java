@@ -3,9 +3,9 @@ package io.github._7isenko.scenariomix.gui;
 public class MenuHandler {
     private static MenuHandler instance;
 
-    private Menu mainMenu;
-    private Menu scenarioMenu;
-    private Menu toolMenu;
+    private final Menu mainMenu;
+    private final Menu scenarioMenu;
+    private final Menu toolMenu;
 
     private MenuHandler() {
         this.mainMenu = new MainMenu();

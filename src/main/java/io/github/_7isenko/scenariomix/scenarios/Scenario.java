@@ -1,6 +1,7 @@
 package io.github._7isenko.scenariomix.scenarios;
 
 import io.github._7isenko.scenariomix.ScenarioMix;
+import io.github._7isenko.scenariomix.scenarios.config.Configuration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.HandlerList;
@@ -8,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
-
+@SuppressWarnings("rawtypes")
 public abstract class Scenario {
     private final String name;
     private final String configName;
@@ -16,8 +17,8 @@ public abstract class Scenario {
     private Material icon;
     private boolean started;
     private Map<BukkitRunnable, Integer> runnables;
-    private Set<Listener> listeners;
-    private Map<String, Configuration> configs;
+    private final Set<Listener> listeners;
+    private final Map<String, Configuration> configs;
 
     public Scenario(String name, String configName, Material icon, String... description) {
         this.name = name;
@@ -42,15 +43,12 @@ public abstract class Scenario {
         }
     }
 
-    public boolean disable() {
-        if (!started) {
-            return false;
-        } else {
+    public void disable() {
+        if (started) {
             started = false;
             stop();
             stopListeners();
             stopBukkitRunnables();
-            return true;
         }
     }
 
@@ -58,8 +56,8 @@ public abstract class Scenario {
 
     public abstract void stop();
 
-    public void addConfig(Configuration config) {
-        configs.put(config.getName(), config);
+    public void addConfig(Configuration configuration) {
+        configs.put(configuration.getName(), configuration);
     }
 
     public void addBukkitRunnable(BukkitRunnable runnable, int period) {
@@ -71,9 +69,7 @@ public abstract class Scenario {
     }
 
     public void startListeners() {
-        listeners.forEach((listener) -> {
-            Bukkit.getPluginManager().registerEvents(listener, ScenarioMix.plugin);
-        });
+        listeners.forEach((listener) -> Bukkit.getPluginManager().registerEvents(listener, ScenarioMix.plugin));
     }
 
     public void stopListeners() {
@@ -81,13 +77,11 @@ public abstract class Scenario {
     }
 
     public void startBukkitRunnables() {
-        runnables.forEach((runnable, period) -> {
-            runnable.runTaskTimer(ScenarioMix.plugin, 20L, (long) period);
-        });
+        runnables.forEach((runnable, period) -> runnable.runTaskTimer(ScenarioMix.plugin, 20L, (long) period));
     }
 
     public void stopBukkitRunnables() {
-        HashMap<BukkitRunnable, Integer> newRunnables = new HashMap();
+        HashMap<BukkitRunnable, Integer> newRunnables = new HashMap<>();
         runnables.forEach((runnable, integer) -> {
             runnable.cancel();
 

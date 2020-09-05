@@ -1,7 +1,7 @@
 package io.github._7isenko.scenariomix.gui;
 
 import io.github._7isenko.scenariomix.ScenarioMix;
-import io.github._7isenko.scenariomix.scenarios.Configuration;
+import io.github._7isenko.scenariomix.scenarios.config.Configuration;
 import io.github._7isenko.scenariomix.scenarios.Scenario;
 import io.github._7isenko.scenariomix.utils.Calculator;
 import io.github._7isenko.scenariomix.utils.Parser;
@@ -22,19 +22,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
-public class ConfigurationMenu extends Menu {
-    private Scenario scenario;
-    private Map<String, Configuration> configs;
+public class ConfigurationsMenu extends Menu {
+    private final Scenario scenario;
+    private final Map<String, Configuration> configs;
+    private final Menu previous;
     private Listener listener;
-    private Menu previous;
 
-    public ConfigurationMenu(Scenario scenario, Menu previousMenu) {
+    public ConfigurationsMenu(Scenario scenario, Menu previousMenu) {
         this.previous = previousMenu;
         this.scenario = scenario;
         configs = scenario.getConfigs();
         this.inventory = create(scenario);
         if (inventory != null) {
-            listener = new ConfigurationMenu.MenuListener();
+            listener = new ConfigurationsMenu.MenuListener();
             Bukkit.getPluginManager().registerEvents(listener, ScenarioMix.plugin);
         }
     }

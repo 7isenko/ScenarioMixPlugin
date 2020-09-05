@@ -1,7 +1,7 @@
 package io.github._7isenko.scenariomix.scenarios.gameplay.fill;
 
 import io.github._7isenko.scenariomix.ScenarioMix;
-import io.github._7isenko.scenariomix.scenarios.Configuration;
+import io.github._7isenko.scenariomix.scenarios.config.Configuration;
 import io.github._7isenko.scenariomix.scenarios.Scenario;
 import org.bukkit.*;
 import org.bukkit.block.Block;
