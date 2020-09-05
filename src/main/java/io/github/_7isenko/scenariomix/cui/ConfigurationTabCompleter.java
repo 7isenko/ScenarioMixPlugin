@@ -14,7 +14,7 @@ public class ConfigurationTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            return filter(ScenarioManager.getInstance().getAllScenariosNames(), args[0]);
+            return filter(ScenarioManager.getInstance().getAllConfigurableScenariosNames(), args[0]);
         }
 
         if (args.length == 2) {

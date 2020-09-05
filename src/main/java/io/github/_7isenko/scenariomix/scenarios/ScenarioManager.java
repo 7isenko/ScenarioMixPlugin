@@ -87,6 +87,16 @@ public class ScenarioManager {
         return names;
     }
 
+    public List<String> getAllConfigurableScenariosNames() {
+        Collection<Scenario> scenarios = getAllScenarios();
+        List<String> names = new ArrayList<>();
+        scenarios.forEach(scenario -> {
+            if (scenario.isConfigurable())
+                names.add(scenario.getConfigName());
+        });
+        return names;
+    }
+
     private ScenarioManager() {
         this.scenarios = new HashMap<>();
         this.toolScenarios = new HashMap<>();
