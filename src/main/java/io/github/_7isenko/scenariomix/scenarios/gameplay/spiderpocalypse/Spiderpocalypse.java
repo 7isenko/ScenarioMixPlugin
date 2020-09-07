@@ -30,6 +30,7 @@ public class Spiderpocalypse extends Scenario {
     public void start() {
         addListener(new SpiderFallListener());
         addListener(new SpiderAttackListener());
+        addListener(new BlockPlaceListener());
         addBukkitRunnable(new ScarySpiderRunnable(), 20);
         random = new Random();
         chunks = new HashSet<>();
