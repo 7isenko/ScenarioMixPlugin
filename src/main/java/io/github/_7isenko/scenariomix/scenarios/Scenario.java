@@ -17,7 +17,7 @@ public abstract class Scenario {
     private Material icon;
     private boolean started;
     private Map<BukkitRunnable, Integer> runnables;
-    private final Set<Listener> listeners;
+    private Set<Listener> listeners;
     private final Map<String, Configuration> configs;
 
     public Scenario(String name, String configName, Material icon, String... description) {
@@ -74,6 +74,7 @@ public abstract class Scenario {
 
     public void stopListeners() {
         listeners.forEach(HandlerList::unregisterAll);
+        listeners = new HashSet<>();
     }
 
     public void startBukkitRunnables() {
