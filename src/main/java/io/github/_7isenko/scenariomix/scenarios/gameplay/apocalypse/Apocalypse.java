@@ -16,6 +16,7 @@ import java.util.Random;
 public class Apocalypse extends Scenario {
     private Configuration<Integer> period = new Configuration<>("period", 10, Material.WATCH, this, "Время в тиках между", "спауном метеоров");
     private BukkitRunnable task;
+
     public Apocalypse() {
         super("Апокалипсис", "apocalypse", Material.MAGMA, "Запускает метеоритный дождь");
         addListener(new MeteorFallListener());
