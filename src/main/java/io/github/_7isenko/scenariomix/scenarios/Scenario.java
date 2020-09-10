@@ -74,7 +74,6 @@ public abstract class Scenario {
 
     public void stopListeners() {
         listeners.forEach(HandlerList::unregisterAll);
-        listeners = new HashSet<>();
     }
 
     public void startBukkitRunnables() {

@@ -7,10 +7,11 @@ public class LastSight extends Scenario {
 
     public LastSight() {
         super("Последний взгляд", "last_sight", Material.GLASS, "Взгляд на человека с тегом", "last_sight вас мгновенно убьёт", "/scoreboard players tag <nick> add last_sight");
+        addBukkitRunnable(new KillingRunnable(), 2);
     }
 
     public void start() {
-        addBukkitRunnable(new KillingRunnable(), 2);
+
     }
 
     public void stop() {

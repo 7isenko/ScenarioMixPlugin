@@ -24,14 +24,15 @@ public class Spiderpocalypse extends Scenario {
 
     public Spiderpocalypse() {
         super("Паукопакалипсис", "spiderpocalypse", Material.SPIDER_EYE, "Дождь из пауков", "аллилуйя");
-    }
-
-    @Override
-    public void start() {
         addListener(new SpiderFallListener());
         addListener(new SpiderAttackListener());
         addListener(new BlockPlaceListener());
         addBukkitRunnable(new ScarySpiderRunnable(), 20);
+    }
+
+    @Override
+    public void start() {
+
         random = new Random();
         chunks = new HashSet<>();
         loaded = new HashSet<>();
