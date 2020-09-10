@@ -12,7 +12,7 @@ public class HeightLimit extends Scenario {
         addConfig(ignoreCreative);
         addConfig(allowBuild);
         addConfig(allowBreak);
-
+        addListener(new BlockEventsListener(this));
     }
 
     private final Configuration<Integer> max = new Configuration<>("max", 126, Material.GLASS, this, "Максимальная высота");
@@ -23,7 +23,6 @@ public class HeightLimit extends Scenario {
 
     @Override
     public void start() {
-        addListener(new BlockEventsListener(this));
     }
 
     @Override
