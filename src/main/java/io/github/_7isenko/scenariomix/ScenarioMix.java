@@ -7,6 +7,7 @@ import io.github._7isenko.scenariomix.scenarios.gameplay.apocalypse.Apocalypse;
 import io.github._7isenko.scenariomix.scenarios.gameplay.fill.Fill;
 import io.github._7isenko.scenariomix.scenarios.gameplay.lastsight.LastSight;
 import io.github._7isenko.scenariomix.scenarios.gameplay.lowestkiller.LowestKiller;
+import io.github._7isenko.scenariomix.scenarios.gameplay.playerride.PlayerRide;
 import io.github._7isenko.scenariomix.scenarios.gameplay.pusher.Pusher;
 import io.github._7isenko.scenariomix.scenarios.gameplay.snowballs.Snowballs;
 import io.github._7isenko.scenariomix.scenarios.gameplay.snowfall.Snowfall;
@@ -50,5 +51,6 @@ public class ScenarioMix extends JavaPlugin {
         scenarioManager.addScenario(new Fill());
         scenarioManager.addScenario(new Spiderpocalypse());
         scenarioManager.addScenario(new Apocalypse());
+        scenarioManager.addScenario(new PlayerRide());
     }
 }
