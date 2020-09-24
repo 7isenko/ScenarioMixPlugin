@@ -25,8 +25,8 @@ public class CollideRunnable extends BukkitRunnable {
             }
             near.remove(player);
             if (!near.isEmpty()) {
-                player.damage(1000, near.iterator().next());
-                near.forEach(player1 -> player1.damage(1000, player));
+                player.setHealth(0);
+                near.forEach(player1 -> player1.setHealth(0));
             }
         });
     }
