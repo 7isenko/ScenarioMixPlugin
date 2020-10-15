@@ -26,7 +26,7 @@ public class PlayerRidingListener implements Listener {
             if (allowMany.getValue()) {
                 getTopPlayer(player2).addPassenger(event.getPlayer());
             } else if (player2.getVehicle() == null || !(player2.getVehicle() instanceof Pig)) {
-                sitOnStand(event.getPlayer(), player2);
+                sitOnDog(event.getPlayer(), player2);
             }
         }
     }
@@ -43,21 +43,21 @@ public class PlayerRidingListener implements Listener {
         if (!entity.getPassengers().isEmpty()) {
             return getTopPlayer(entity.getPassengers().get(0));
         } else if (entity instanceof Player)
-            return createPig(entity);
+            return createDog(entity);
         else return entity;
     }
 
-    private void sitOnStand(Player player, Player vehicle) {
+    private void sitOnDog(Player player, Player vehicle) {
         if (vehicle.getPassengers().isEmpty()) {
-            createPig(vehicle).addPassenger(player);
+            createDog(vehicle).addPassenger(player);
         } else vehicle.getPassengers().get(0).addPassenger(player);
     }
 
-    private Entity createPig(Entity player) {
+    private Entity createDog(Entity player) {
         if (!player.getPassengers().isEmpty())
             if (player.getPassengers().get(0) instanceof ArmorStand)
                 return player.getPassengers().get(0);
-        Pig entity = player.getWorld().spawn(player.getLocation(), Pig.class);
+        Wolf entity = player.getWorld().spawn(player.getLocation(), Wolf.class);
         entity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 30000, 1, true, false));
         entity.setInvulnerable(true);
         entity.setSilent(true);
