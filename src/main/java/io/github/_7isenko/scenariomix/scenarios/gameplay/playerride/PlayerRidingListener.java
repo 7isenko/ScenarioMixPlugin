@@ -25,15 +25,15 @@ public class PlayerRidingListener implements Listener {
             Player player2 = (Player) event.getRightClicked();
             if (allowMany.getValue()) {
                 getTopPlayer(player2).addPassenger(event.getPlayer());
-            } else if (player2.getVehicle() == null || !(player2.getVehicle() instanceof Pig)) {
-                sitOnDog(event.getPlayer(), player2);
+            } else if (player2.getVehicle() == null || !(player2.getVehicle() instanceof Player)) {
+                player2.addPassenger(event.getPlayer());
             }
         }
     }
 
     @EventHandler
     public void onLeave(VehicleExitEvent event) {
-        if (event.getVehicle().getType() == EntityType.PLAYER || event.getVehicle().getType() == EntityType.PIG) {
+        if (event.getVehicle() instanceof Player) {
             if (!allowLeave.getValue())
                 event.setCancelled(true);
         }
@@ -42,26 +42,9 @@ public class PlayerRidingListener implements Listener {
     private Entity getTopPlayer(Entity entity) {
         if (!entity.getPassengers().isEmpty()) {
             return getTopPlayer(entity.getPassengers().get(0));
-        } else if (entity instanceof Player)
-            return createDog(entity);
-        else return entity;
-    }
-
-    private void sitOnDog(Player player, Player vehicle) {
-        if (vehicle.getPassengers().isEmpty()) {
-            createDog(vehicle).addPassenger(player);
-        } else vehicle.getPassengers().get(0).addPassenger(player);
-    }
-
-    private Entity createDog(Entity player) {
-        if (!player.getPassengers().isEmpty())
-            if (player.getPassengers().get(0) instanceof ArmorStand)
-                return player.getPassengers().get(0);
-        Wolf entity = player.getWorld().spawn(player.getLocation(), Wolf.class);
-        entity.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 30000, 1, true, false));
-        entity.setInvulnerable(true);
-        entity.setSilent(true);
-        player.addPassenger(entity);
+        }
         return entity;
     }
+
+
 }
