@@ -16,9 +16,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class MainMenu extends Menu {
+    private final String name = "Выберите тип сценариев";
 
     public MainMenu() {
-        String name = "Выберите тип сценариев";
         inventory = createInventory(name);
         Bukkit.getPluginManager().registerEvents(new MainMenu.MenuListener(), ScenarioMix.plugin);
     }
@@ -44,7 +44,7 @@ public class MainMenu extends Menu {
     private class MenuListener implements Listener {
         @EventHandler(priority = EventPriority.HIGHEST)
         public void onClick(InventoryClickEvent event) {
-            if (!event.getInventory().getName().equals(inventory.getName()))
+            if (!event.getView().getTitle().equals(name))
                 return;
             if (event.getCurrentItem() == null) {
                 event.getWhoClicked().closeInventory();

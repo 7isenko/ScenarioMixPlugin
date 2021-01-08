@@ -6,7 +6,6 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.material.MaterialData;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
@@ -18,12 +17,11 @@ public class Spiderpocalypse extends Scenario {
     protected Random random;
     protected Set<Chunk> chunks;
     protected Set<Chunk> loaded;
-    protected Material type;
     protected BukkitTask task;
     protected World world;
 
     public Spiderpocalypse() {
-        super("Паукопакалипсис", "spiderpocalypse", Material.SPIDER_EYE, "Дождь из пауков", "аллилуйя");
+        super("Паукопакалипсис", "spiderpocalypse", "SPIDER_EYE", "Дождь из пауков", "аллилуйя");
         addListener(new SpiderFallListener());
         addListener(new SpiderAttackListener());
         addListener(new BlockPlaceListener());
@@ -36,7 +34,6 @@ public class Spiderpocalypse extends Scenario {
         random = new Random();
         chunks = new HashSet<>();
         loaded = new HashSet<>();
-        type = Material.SNOW_BLOCK;
         world = Bukkit.getWorlds().get(0);
         task = (new BukkitRunnable() {
             public void run() {

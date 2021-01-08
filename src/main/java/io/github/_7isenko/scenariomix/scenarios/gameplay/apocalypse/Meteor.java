@@ -2,7 +2,6 @@ package io.github._7isenko.scenariomix.scenarios.gameplay.apocalypse;
 
 import io.github._7isenko.scenariomix.ScenarioMix;
 import org.bukkit.Particle;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Fireball;
 import org.bukkit.scheduler.BukkitRunnable;

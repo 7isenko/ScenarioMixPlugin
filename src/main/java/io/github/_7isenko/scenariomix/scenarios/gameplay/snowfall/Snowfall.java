@@ -11,7 +11,6 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.*;
 
 public class Snowfall extends Scenario {
-    // I used GeorgeNotFound's code here
     protected Random random;
     protected float percentage;
     protected Map<Chunk, Float> chunks;
@@ -21,7 +20,7 @@ public class Snowfall extends Scenario {
     protected World world;
 
     public Snowfall() {
-        super("Снегопад", "snowfall", Material.SNOW_BLOCK, new String[]{"Запускает сильный снегопад"});
+        super("Снегопад", "snowfall", "SNOW_BLOCK", "Запускает сильный снегопад");
     }
 
     @Override
@@ -62,8 +61,8 @@ public class Snowfall extends Scenario {
         loaded.add(chunk);
         new BukkitRunnable() {
             int counter = 0;
-            int tickMiss = 3;
-            int amount;
+            final int tickMiss = 3;
+            final int amount;
 
             {
                 amount = 450 * tickMiss;

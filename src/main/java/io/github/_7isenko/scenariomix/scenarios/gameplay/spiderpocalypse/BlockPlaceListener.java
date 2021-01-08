@@ -12,8 +12,8 @@ import org.bukkit.event.block.BlockPlaceEvent;
 public class BlockPlaceListener implements Listener {
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
-        Material material = event.getBlockPlaced().getType();
-        if (material == Material.WORKBENCH || material == Material.FURNACE) {
+        String material = event.getBlockPlaced().getType().toString();
+        if (material.equals("WORKBENCH") || material.equals("FURNACE") || material.equals("CRAFTING_TABLE")) {
             Block block = event.getBlockPlaced().getRelative(BlockFace.UP);
             if (block.getType() == Material.AIR)
                 ((Creature)block.getWorld().spawnEntity(block.getLocation().add(0.5, 0, 0.5), EntityType.CAVE_SPIDER)).setTarget(event.getPlayer());

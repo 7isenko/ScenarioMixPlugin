@@ -5,7 +5,7 @@ import org.bukkit.Material;
 
 public class AutoRespawn extends Scenario {
     public AutoRespawn() {
-        super("Авто-возрожение", "auto_respawn", Material.FENCE_GATE, new String[]{"При смерти игрок будет", "автоматически возрождён"});
+        super("Авто-возрожение", "auto_respawn", "FENCE_GATE", "При смерти игрок будет", "автоматически возрождён");
         addListener(new DeathListener());
     }
 

@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class Fill extends Scenario {
     public Fill() {
-        super("Заполнение", "fill", Material.LAVA_BUCKET, "Постепенно заполняет мир", "выбранным блоком");
+        super("Заполнение", "fill", "LAVA_BUCKET", "Постепенно заполняет мир", "выбранным блоком");
         addConfig(material);
         addConfig(delay);
         addConfig(amount);
@@ -19,12 +19,12 @@ public class Fill extends Scenario {
         addConfig(upside);
     }
 
-    private final Configuration<Material> material = new Configuration<>("material", Material.LAVA, Material.BOWL, this, "Чем заполнять");
-    private final Configuration<Integer> delay = new Configuration<>("delay", 60, Material.FEATHER, this, "Время между заполнениями", "(секунды)");
-    private final Configuration<Integer> amount = new Configuration<>("amount", 2, Material.COBBLESTONE_STAIRS, this, "Толщина блоков, заполняемых ", "за один раз");
-    private final Configuration<Integer> current = new Configuration<>("current", 2, Material.SIGN, this, "Текущая высота", "заполнения");
-    private final Configuration<Boolean> replace = new Configuration<>("replace", false, Material.IRON_SPADE, this, "Заменять блоки", "любого типа");
-    private final Configuration<Boolean> upside = new Configuration<>("upside", false, Material.SNOW_BALL, this, "Заполнение идёт сверху");
+    private final Configuration<Material> material = new Configuration<>("material", Material.LAVA, "BOWL", this, "Чем заполнять");
+    private final Configuration<Integer> delay = new Configuration<>("delay", 60, "FEATHER", this, "Время между заполнениями", "(секунды)");
+    private final Configuration<Integer> amount = new Configuration<>("amount", 2, "COBBLESTONE_STAIRS", this, "Толщина блоков, заполняемых ", "за один раз");
+    private final Configuration<Integer> current = new Configuration<>("current", 2, "SIGN", this, "Текущая высота", "заполнения");
+    private final Configuration<Boolean> replace = new Configuration<>("replace", false, "IRON_SPADE", this, "Заменять блоки", "любого типа");
+    private final Configuration<Boolean> upside = new Configuration<>("upside", false, "SNOW_BALL", this, "Заполнение идёт сверху");
     private BukkitRunnable task = null;
 
     @Override
@@ -45,7 +45,7 @@ public class Fill extends Scenario {
                 }
                 int borderSize = (int) Math.ceil(world.getWorldBorder().getSize());
                 if (borderSize > 1000) {
-                    Bukkit.broadcast(ChatColor.RED + "Размер границ мира больше 1000, заполнение отменено. Нужен перезапуск", "op");
+                    Bukkit.broadcast(ChatColor.RED + "Размер границ мира больше 1000, заполнение отменено. Нужен перезапуск", "scenariomix.debug");
                     task.cancel();
                     task = null;
                     return;
@@ -63,7 +63,6 @@ public class Fill extends Scenario {
             task.cancel();
             task = null;
         }
-
     }
 
     private void fill(World world, int size) {

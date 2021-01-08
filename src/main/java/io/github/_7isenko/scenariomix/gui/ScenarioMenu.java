@@ -24,10 +24,10 @@ import java.util.Map;
 
 public class ScenarioMenu extends Menu {
     protected Map<Integer, Scenario> scenarios;
+    private final String name = "Доступные сценарии";
     private final Menu menuInstance;
 
     public ScenarioMenu() {
-        String name = "Доступные сценарии";
         scenarios = ScenarioManager.getInstance().getScenarios();
         inventory = createInventory(name, ScenarioManager.getInstance().getScenarios());
         menuInstance = this;
@@ -41,7 +41,7 @@ public class ScenarioMenu extends Menu {
     public class InventoryListener implements Listener {
         @EventHandler(priority = EventPriority.HIGHEST)
         public void onClick(InventoryClickEvent event) {
-            if (!event.getInventory().getName().equals(inventory.getName()))
+            if (!event.getView().getTitle().equals(name))
                 return;
             event.setCancelled(true);
             final ItemStack clickedItem = event.getCurrentItem();

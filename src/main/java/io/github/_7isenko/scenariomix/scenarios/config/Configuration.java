@@ -1,11 +1,11 @@
 package io.github._7isenko.scenariomix.scenarios.config;
 
 import io.github._7isenko.scenariomix.scenarios.Scenario;
+import io.github._7isenko.scenariomix.utils.MaterialUtils;
 import io.github._7isenko.scenariomix.utils.Parser;
 import org.bukkit.Material;
 
-import javax.activation.UnsupportedDataTypeException;
-import java.util.NoSuchElementException;
+import java.util.Arrays;
 
 public class Configuration<T> {
     private final String name;
@@ -14,10 +14,10 @@ public class Configuration<T> {
     private T value;
     private final Scenario scenario;
 
-    public Configuration(String name, T defaultValue, Material icon, Scenario scenario, String... description) {
+    public Configuration(String name, T defaultValue, String icon, Scenario scenario, String... description) {
         this.name = name;
         this.value = defaultValue;
-        this.icon = icon;
+        this.icon = MaterialUtils.getMaterial(icon);
         this.scenario = scenario;
         this.description = description;
     }
@@ -43,26 +43,28 @@ public class Configuration<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public void setStringValue(String string) throws IllegalArgumentException, UnsupportedDataTypeException {
+    public void setStringValue(String string) throws IllegalArgumentException {
         ValueType type = getValueType();
+        String[] strings = new String[]{string};
+
+        if (isArray())
+            strings = string.split(",");
+
         switch (type) {
             case STRING:
-                setValue((T) string);
+                setValue(strings);
                 break;
             case BOOLEAN:
-                setValue((T) Parser.parseBoolean(string));
+                setValue(Arrays.stream(strings).map(Parser::parseBoolean).toArray());
                 break;
             case INTEGER:
-                setValue((T) Integer.valueOf(string));
+                setValue(Arrays.stream(strings).map(Integer::parseInt).toArray());
                 break;
             case MATERIAL:
-                Material material = Material.getMaterial(string.toUpperCase());
-                if (material != null) setValue((T) material);
-                else
-                    throw new NoSuchElementException("Такого материала нет");
+                setValue(Arrays.stream(strings).map(Parser::parseMaterial).toArray());
                 break;
             default:
-                throw new UnsupportedDataTypeException("Такой тип данных не поддерживается.");
+                throw new IllegalArgumentException("Такой тип данных не поддерживается.");
         }
     }
 
@@ -71,19 +73,30 @@ public class Configuration<T> {
     }
 
     public ValueType getValueType() {
-        if (value instanceof Integer)
+        Object checkValue = value;
+        if (isArray())
+            checkValue = ((Object[]) value)[0];
+
+        if (checkValue instanceof Integer)
             return ValueType.INTEGER;
-        else if (value instanceof Boolean)
+        else if (checkValue instanceof Boolean)
             return ValueType.BOOLEAN;
-        else if (value instanceof Material)
+        else if (checkValue instanceof Material)
             return ValueType.MATERIAL;
-        else if (value instanceof String)
+        else if (checkValue instanceof String)
             return ValueType.STRING;
         else return ValueType.UNKNOWN;
     }
 
-    public void setValue(T value) {
-        this.value = value;
+    public boolean isArray() {
+        return value.getClass().isArray();
+    }
+
+    public void setValue(Object value) {
+        if (isArray())
+            this.value = (T) value;
+        else
+            this.value = ((T[]) value)[0];
     }
 
     public Scenario getScenario() {

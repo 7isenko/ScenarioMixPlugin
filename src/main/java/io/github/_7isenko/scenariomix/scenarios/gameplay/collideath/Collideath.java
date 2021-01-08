@@ -5,7 +5,7 @@ import org.bukkit.Material;
 
 public class Collideath extends Scenario {
     public Collideath() {
-        super("Тактильная смерть", "collideath", Material.CACTUS, "Обнимашки запрещены");
+        super("Тактильная смерть", "collideath", "CACTUS", "Обнимашки запрещены");
         addBukkitRunnable(new CollideRunnable(), 1);
     }
 

@@ -78,7 +78,7 @@ public class ScenarioMixCommand implements CommandExecutor {
     }
 
     private void sendScenariosNames(CommandSender commandSender) {
-        commandSender.sendMessage(ChatColor.BLUE + "Вот список сценариев с фонфигурациями:");
+        commandSender.sendMessage(ChatColor.BLUE + "Список сценариев с конфигурациями:");
         for (Scenario scenario1 : ScenarioManager.getInstance().getConfigurableScenarios()) {
             String string = ChatColor.GRAY + scenario1.getConfigName() + " - " + ChatColor.YELLOW + scenario1.getName() + ": " + String.join(" ", scenario1.getDescription());
             commandSender.sendMessage(string);

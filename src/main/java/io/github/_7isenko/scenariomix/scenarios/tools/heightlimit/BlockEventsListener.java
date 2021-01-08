@@ -39,9 +39,7 @@ public class BlockEventsListener implements Listener {
      * @return true if he can place anyway
      */
     private boolean checkPlayer(Player player) {
-        if (limit.isIgnoreCreative() && (player.getGameMode() == GameMode.CREATIVE || player.getGameMode() == GameMode.SPECTATOR))
-            return true;
-        return false;
+        return limit.isIgnoreCreative() && (player.getGameMode() == GameMode.CREATIVE || player.getGameMode() == GameMode.SPECTATOR);
     }
 
     /**

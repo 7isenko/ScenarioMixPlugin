@@ -1,9 +1,7 @@
 package io.github._7isenko.scenariomix.utils;
 
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 
 import java.util.Random;
 
