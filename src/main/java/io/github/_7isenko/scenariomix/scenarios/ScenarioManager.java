@@ -1,7 +1,5 @@
 package io.github._7isenko.scenariomix.scenarios;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.*;
 
 public class ScenarioManager {
@@ -47,7 +45,6 @@ public class ScenarioManager {
         return scenarios;
     }
 
-    @Nullable
     public Scenario getAnyScenario(String name) {
         for (Scenario scenario : getAllScenarios()) {
             if (scenario.getConfigName().equalsIgnoreCase(name))
@@ -56,12 +53,10 @@ public class ScenarioManager {
         return null;
     }
 
-    @Nullable
     public Scenario getToolScenario(int number) {
         return toolScenarios.get(number);
     }
 
-    @Nullable
     public Scenario getScenario(int number) {
         return scenarios.get(number);
     }

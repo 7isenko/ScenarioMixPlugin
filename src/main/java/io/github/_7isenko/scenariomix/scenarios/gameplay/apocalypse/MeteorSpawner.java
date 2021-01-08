@@ -1,5 +1,6 @@
 package io.github._7isenko.scenariomix.scenarios.gameplay.apocalypse;
 
+import io.github._7isenko.scenariomix.utils.MaterialUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,7 +19,7 @@ public class MeteorSpawner implements Listener {
                 event.setCancelled(true);
                 Location location = event.getPlayer().getTargetBlock(null, 100).getLocation().clone().add(0.5D, 0.0D, 0.5D);
                 location.setY(255);
-                FallingBlock fblock = location.getBlock().getWorld().spawnFallingBlock(location, new MaterialData(Material.MAGMA));
+                FallingBlock fblock = location.getBlock().getWorld().spawnFallingBlock(location, new MaterialData(MaterialUtils.getMaterial("MAGMA")));
                 new Meteor(fblock);
                 if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK) {
                     fblock.addScoreboardTag("super");

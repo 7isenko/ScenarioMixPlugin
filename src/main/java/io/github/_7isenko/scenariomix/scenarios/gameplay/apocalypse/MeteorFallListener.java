@@ -20,7 +20,8 @@ public class MeteorFallListener implements Listener {
     public void onFall(EntityChangeBlockEvent event) {
         if (event.getEntity() instanceof FallingBlock) {
             FallingBlock fallingBlock = (FallingBlock) event.getEntity();
-            if (fallingBlock.getMaterial() == Material.MAGMA) {
+            String material = fallingBlock.getMaterial().toString();
+            if (material.equals("MAGMA") || material.equals("MAGMA_BLOCK")) {
                 event.setCancelled(true);
                 int power = new Random().nextInt(8) + 3;
                 if (fallingBlock.getScoreboardTags().contains("super"))
@@ -35,7 +36,8 @@ public class MeteorFallListener implements Listener {
         event.getEntity().getNearbyEntities(0.75, 4, 0.75).forEach(entity -> {
             if (entity instanceof FallingBlock) {
                 FallingBlock fallingBlock = (FallingBlock) entity;
-                if (fallingBlock.getMaterial() == Material.MAGMA) {
+                String material = fallingBlock.getMaterial().toString();
+                if (material.equals("MAGMA") || material.equals("MAGMA_BLOCK")) {
                     event.setCancelled(true);
                     int power = new Random().nextInt(8) + 3;
                     if (fallingBlock.getScoreboardTags().contains("super"))

@@ -2,6 +2,7 @@ package io.github._7isenko.scenariomix.scenarios;
 
 import io.github._7isenko.scenariomix.ScenarioMix;
 import io.github._7isenko.scenariomix.scenarios.config.Configuration;
+import io.github._7isenko.scenariomix.utils.MaterialUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.event.HandlerList;
@@ -17,14 +18,14 @@ public abstract class Scenario {
     private Material icon;
     private boolean started;
     private Map<BukkitRunnable, Integer> runnables;
-    private Set<Listener> listeners;
+    private final Set<Listener> listeners;
     private final Map<String, Configuration> configs;
 
-    public Scenario(String name, String configName, Material icon, String... description) {
+    public Scenario(String name, String configName, String icon, String... description) {
         this.name = name;
         this.configName = configName;
         this.description = description;
-        this.icon = icon;
+        this.icon = MaterialUtils.getMaterial(icon);
         this.started = false;
         this.runnables = new HashMap<>();
         this.listeners = new HashSet<>();
@@ -68,19 +69,19 @@ public abstract class Scenario {
         listeners.add(listener);
     }
 
-    public void startListeners() {
+    private void startListeners() {
         listeners.forEach((listener) -> Bukkit.getPluginManager().registerEvents(listener, ScenarioMix.plugin));
     }
 
-    public void stopListeners() {
+    private void stopListeners() {
         listeners.forEach(HandlerList::unregisterAll);
     }
 
-    public void startBukkitRunnables() {
+    private void startBukkitRunnables() {
         runnables.forEach((runnable, period) -> runnable.runTaskTimer(ScenarioMix.plugin, 20L, (long) period));
     }
 
-    public void stopBukkitRunnables() {
+    private void stopBukkitRunnables() {
         HashMap<BukkitRunnable, Integer> newRunnables = new HashMap<>();
         runnables.forEach((runnable, integer) -> {
             runnable.cancel();
@@ -120,8 +121,8 @@ public abstract class Scenario {
         return icon;
     }
 
-    public void setIcon(Material icon) {
-        this.icon = icon;
+    public void setIcon(String icon) {
+        this.icon = MaterialUtils.getMaterial(icon);
     }
 
     public boolean isStarted() {

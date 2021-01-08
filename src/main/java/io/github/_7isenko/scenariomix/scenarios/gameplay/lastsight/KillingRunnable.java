@@ -1,7 +1,6 @@
 package io.github._7isenko.scenariomix.scenarios.gameplay.lastsight;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -27,12 +26,10 @@ public class KillingRunnable extends BukkitRunnable {
 
     private Set<LivingEntity> getEntities(Player player) {
         Set<LivingEntity> entities = new HashSet();
-        Iterator var3 = player.getNearbyEntities(50.0D, 100.0D, 50.0D).iterator();
 
-        while(var3.hasNext()) {
-            Entity entity = (Entity)var3.next();
-            if (entity instanceof LivingEntity && isLookingAt(player, (LivingEntity)entity) && isCloser(player, (LivingEntity)entity)) {
-                entities.add((LivingEntity)entity);
+        for (Entity entity : player.getNearbyEntities(50.0D, 100.0D, 50.0D)) {
+            if (entity instanceof LivingEntity && isLookingAt(player, (LivingEntity) entity) && isCloser(player, (LivingEntity) entity)) {
+                entities.add((LivingEntity) entity);
             }
         }
 
