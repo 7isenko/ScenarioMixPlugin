@@ -5,7 +5,7 @@ import io.github._7isenko.scenariomix.scenarios.ScenarioManager;
 public class ToolScenarioMenu extends ScenarioMenu {
 
     public ToolScenarioMenu() {
-        String name = "Доступные инструменты";
+        name = "Доступные инструменты";
         scenarios = ScenarioManager.getInstance().getToolScenarios();
         inventory = createInventory(name, ScenarioManager.getInstance().getToolScenarios());
 
@@ -13,6 +13,7 @@ public class ToolScenarioMenu extends ScenarioMenu {
         // Bukkit.getPluginManager().registerEvents(new InventoryListener(), ScenarioMix.plugin);
     }
 
+    @Override
     protected boolean switchScenario(int slot) {
         return ScenarioManager.getInstance().switchToolScenario(slot);
     }

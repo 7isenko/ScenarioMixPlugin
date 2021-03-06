@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class ScenarioMenu extends Menu {
     protected Map<Integer, Scenario> scenarios;
-    private final String name = "Доступные сценарии";
+    protected String name = "Доступные сценарии";
     private final Menu menuInstance;
 
     public ScenarioMenu() {

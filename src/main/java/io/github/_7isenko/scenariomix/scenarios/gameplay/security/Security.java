@@ -5,7 +5,8 @@ import org.bukkit.Material;
 
 public class Security extends Scenario {
     public Security() {
-        super("Security", "security", "SHIELD", "weak - не может бить;\nstrong - не может ломать");
+        super("Security", "security", "SHIELD", "weak - не может бить;" +
+                "strong - не может ломать");
         addListener(new WeakAttackListener());
         addListener(new BreakListener());
     }
