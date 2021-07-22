@@ -17,6 +17,7 @@ import io.github._7isenko.scenariomix.scenarios.gameplay.snowballs.Snowballs;
 import io.github._7isenko.scenariomix.scenarios.gameplay.snowfall.Snowfall;
 import io.github._7isenko.scenariomix.scenarios.gameplay.spiderpocalypse.Spiderpocalypse;
 import io.github._7isenko.scenariomix.scenarios.gameplay.throwtnt.ThrowTNT;
+import io.github._7isenko.scenariomix.scenarios.gameplay.waterdamage.WaterDamage;
 import io.github._7isenko.scenariomix.scenarios.tools.autorespawn.AutoRespawn;
 import io.github._7isenko.scenariomix.scenarios.tools.autospectator.AutoSpectator;
 import io.github._7isenko.scenariomix.scenarios.tools.fightme.FightMe;
@@ -63,5 +64,6 @@ public class ScenarioMix extends JavaPlugin {
         scenarioManager.addScenario(new Security());
         scenarioManager.addScenario(new RandomGive());
         scenarioManager.addScenario(new ThrowTNT());
+        scenarioManager.addScenario(new WaterDamage());
     }
 }
