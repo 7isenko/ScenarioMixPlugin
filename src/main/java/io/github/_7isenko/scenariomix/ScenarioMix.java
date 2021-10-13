@@ -23,6 +23,7 @@ import io.github._7isenko.scenariomix.scenarios.tools.autospectator.AutoSpectato
 import io.github._7isenko.scenariomix.scenarios.tools.fightme.FightMe;
 import io.github._7isenko.scenariomix.scenarios.tools.heightlimit.HeightLimit;
 import io.github._7isenko.scenariomix.scenarios.tools.nocrouch.NoCrouch;
+import io.github._7isenko.scenariomix.scenarios.tools.nocrouchwithtag.NoCrouchWithTag;
 import io.github._7isenko.scenariomix.scenarios.tools.randomteam.RandomTeam;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -52,6 +53,7 @@ public class ScenarioMix extends JavaPlugin {
         scenarioManager.addToolScenario(new HeightLimit());
         scenarioManager.addToolScenario(new RandomTeam());
         scenarioManager.addToolScenario(new NoCrouch());
+        scenarioManager.addToolScenario(new NoCrouchWithTag());
         scenarioManager.addScenario(new Pusher());
         scenarioManager.addScenario(new LowestKiller());
         scenarioManager.addScenario(new Snowballs());
