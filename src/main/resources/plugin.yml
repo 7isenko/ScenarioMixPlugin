@@ -1,7 +1,7 @@
 name: ScenarioMix
 version: "1.1.0"
 authors: [7isenko, hevav]
-api-version: 1.16
+api-version: 1.20
 main: io.github._7isenko.scenariomix.ScenarioMix
 commands:
   mix:
